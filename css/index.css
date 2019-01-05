@@ -58,6 +58,9 @@ img{display: block;}
   margin-left: 40px;
   cursor: pointer;
 }
+.nav li:nth-child(1){
+  width: 18px;
+}
 .nav li:hover .down{
   width: 100%;
 }

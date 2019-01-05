@@ -1,7 +1,7 @@
-window.addEventListener('DOMContentLoaded',function(){
 // 等待页面所有资源已加载完成
+window.addEventListener('DOMContentLoaded',function(){
 
-// 获取 dom 元素
+  // 获取 dom 元素
   var headerLisNodes = document.querySelectorAll('.nav li')
   var arrowNode = document.querySelector('.arrow')
   var headerDownNodes = document.querySelectorAll('.down')
@@ -107,13 +107,25 @@ window.addEventListener('DOMContentLoaded',function(){
   firstViewHandle()
   function firstViewHandle() {
 
+    // 获取 dom 元素
     var homeCarouselNodes = document.querySelectorAll('.home-carousel li')
     var homePointNodes = document.querySelectorAll('.home-point li')
+    var homeNode = document.querySelector('.home')
+
     var lastIndex = 0
     var nowIndex = 0
+    var lastTime = 0
+    var nowTime = Date.now()
+    var timer = null
+
     for (var i = 0; i < homePointNodes.length; i++) {
       homePointNodes[i].index = i
       homePointNodes[i].onclick = function () {
+        // 函数节流：在规定事件内，只让第一次操作生效，后面不生效
+        // 如果点击的时间间隔小于2秒则不生效
+        if (nowTime - lastTime <= 2000) return
+        // 同步上一次的点击时间
+        lastTime = nowTime
         // 同步 nowIndex 的值
         nowIndex = this.index
         // 如果点击当前小圆点，则不发生任何动画
@@ -134,6 +146,28 @@ window.addEventListener('DOMContentLoaded',function(){
         // 同步上一次的值
         lastIndex = nowIndex
       }
+    }
+    // 鼠标移入关闭定时器
+    homeNode.onmouseenter = function () {
+      clearInterval(timer)
+    }
+    // 鼠标移出开启定时器
+    homeNode.onmouseleave = autoPlay
+    // 自动轮播
+    autoPlay()
+    function autoPlay() {
+      timer = setInterval(function () {
+        nowIndex++
+        if (nowIndex >= homePointNodes.length) nowIndex = 0
+        // 自动轮播就是不断地点击右边的小圆点
+        homeCarouselNodes[nowIndex].className = 'common-title right-show'
+        homeCarouselNodes[lastIndex].className = 'common-title left-hide'
+        // 设置小圆点状态
+        homePointNodes[lastIndex].className = ''
+        homePointNodes[nowIndex].className = 'active'
+        // 同步上一次的值
+        lastIndex = nowIndex
+      }, 2500)
     }
 
   }
