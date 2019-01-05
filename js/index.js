@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded',function(){
 
   // 处理头部区域
   headerHandle()
-  function headerHandle(){
+  function headerHandle() {
 
     // 初始化时小箭头在第一个 li 下面
     arrowNode.style.left = headerLisNodes[0].getBoundingClientRect().left + headerLisNodes[0].offsetWidth / 2 - arrowNode.offsetWidth / 2 + 'px'
@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded',function(){
 
   // 处理内容区域
   contentHandle()
-  function contentHandle(){
+  function contentHandle() {
 
     // 滚轮事件
     document.onmousewheel = wheel
@@ -101,6 +101,41 @@ window.addEventListener('DOMContentLoaded',function(){
     arrowNode.style.left = headerLisNodes[nowIndex].getBoundingClientRect().left + headerLisNodes[nowIndex].offsetWidth / 2 - arrowNode.offsetWidth / 2 + 'px'
     // 修正 ul 的位置
     contentUlNode.style.top = - nowIndex * contentHeight + 'px'
+  }
+
+  // 第一屏
+  firstViewHandle()
+  function firstViewHandle() {
+
+    var homeCarouselNodes = document.querySelectorAll('.home-carousel li')
+    var homePointNodes = document.querySelectorAll('.home-point li')
+    var lastIndex = 0
+    var nowIndex = 0
+    for (var i = 0; i < homePointNodes.length; i++) {
+      homePointNodes[i].index = i
+      homePointNodes[i].onclick = function () {
+        // 同步 nowIndex 的值
+        nowIndex = this.index
+        // 如果点击当前小圆点，则不发生任何动画
+        if (nowIndex === lastIndex) return
+        // 判断
+        if (nowIndex > lastIndex) {
+          // 点击右边，则右边添加 right-show，左边添加 left-hide
+          homeCarouselNodes[nowIndex].className = 'common-title right-show'
+          homeCarouselNodes[lastIndex].className = 'common-title left-hide'
+        } else {
+          // 点击左边，则左边添加 left-show，右边添加 right-hide
+          homeCarouselNodes[nowIndex].className = 'common-title left-show'
+          homeCarouselNodes[lastIndex].className = 'common-title right-hide'
+        }
+        // 设置小圆点状态
+        homePointNodes[lastIndex].className = ''
+        this.className = 'active'
+        // 同步上一次的值
+        lastIndex = nowIndex
+      }
+    }
+
   }
 
 })
