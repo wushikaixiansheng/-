@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded',function(){
     document.addEventListener('DOMMouseScroll', wheel)
     function wheel(event) {
       event = event || window.event;
-      // 函数防抖：防止函数多次调用，优化函数性能，让规定时间内调用的函数，只有最后一次生效
+      // 函数防抖：让规定时间内调用的函数，只有最后一次生效
       clearTimeout(wheelTimer);
       wheelTimer = setTimeout(function () {
         var flag = '';
@@ -121,7 +121,7 @@ window.addEventListener('DOMContentLoaded',function(){
     for (var i = 0; i < homePointNodes.length; i++) {
       homePointNodes[i].index = i
       homePointNodes[i].onclick = function () {
-        // 函数节流：在规定事件内，只让第一次操作生效，后面不生效
+        // 函数节流：让规定时间内调用的函数，只有第一次生效
         // 如果点击的时间间隔小于2秒则不生效
         if (nowTime - lastTime <= 2000) return
         // 同步上一次的点击时间
@@ -156,6 +156,7 @@ window.addEventListener('DOMContentLoaded',function(){
     // 自动轮播
     autoPlay()
     function autoPlay() {
+      clearInterval(timer)
       timer = setInterval(function () {
         nowIndex++
         if (nowIndex >= homePointNodes.length) nowIndex = 0
@@ -167,7 +168,7 @@ window.addEventListener('DOMContentLoaded',function(){
         homePointNodes[nowIndex].className = 'active'
         // 同步上一次的值
         lastIndex = nowIndex
-      }, 2500)
+      }, 3000)
     }
 
   }
