@@ -88,11 +88,11 @@ img{display: block;}
   position: absolute;
   left: 50%;
   bottom: -11px;
+  z-index: 10;
   width: 21px;
   height: 11px;
   background: url("../img/arrow.png") no-repeat;
   transition: left 1s;
-  z-index: 10;
 }
 
 /*内容区域*/
@@ -117,6 +117,7 @@ img{display: block;}
   height: 20%;
   /*background: #ccc;*/
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 .content-main section{
   width: 1100px;
@@ -144,6 +145,9 @@ img{display: block;}
 }
 
 /*第一屏样式*/
+.home{
+  transition: transform 1s, opacity 1s;
+}
 .home-carousel{
   position: relative;
   height: 100%;
@@ -213,30 +217,34 @@ img{display: block;}
 }
 @keyframes leftHide {
   0%{visibility: visible;}
-  50%{transform: translateX(-40%) rotateY(30deg) scale(.8);}
+  50%{transform: translateX(-40%) rotateY(30deg) scale(0.8);}
   100%{visibility: hidden;transform: translateZ(-200px);}
 }
 @keyframes rightShow {
-  0%{visibility: hidden; transform: translateZ(-200px);}
-  50%{transform: translateX(40%) rotateY(-30deg) scale(.8);}
+  0%{visibility: hidden;transform: translateZ(-200px);}
+  50%{transform: translateX(40%) rotateY(-30deg) scale(0.8);}
   100%{visibility: visible;}
 }
 @keyframes leftShow {
-  0%{visibility: hidden; transform: translateZ(-200px);}
-  50%{transform: translateX(-40%) rotateY(30deg) scale(.8);}
+  0%{visibility: hidden;transform: translateZ(-200px);}
+  50%{transform: translateX(-40%) rotateY(30deg) scale(0.8);}
   100%{visibility: visible;}
 }
 @keyframes rightHide {
   0%{visibility: visible;}
-  50%{transform: translateX(40%) rotateY(-30deg) scale(.8);}
-  100%{transform: translateZ(-200px); visibility: hidden;}
+  50%{transform: translateX(40%) rotateY(-30deg) scale(0.8);}
+  100%{transform: translateZ(-200px);visibility: hidden;}
 }
 
 /*第二屏样式*/
 .course-title{
+  position: relative;
+  z-index: 10;
   margin: 50px;
 }
 .course-content{
+  position: relative;
+  z-index: 10;
   width: 400px;
   margin-left: 50px;
 }
@@ -244,6 +252,7 @@ img{display: block;}
   position: absolute;
   right: 50px;
   top: 70px;
+  z-index: 10;
   width: 480px;
 }
 .course-lists li{
@@ -285,17 +294,57 @@ img{display: block;}
   background-image: url('../img/plus_row.png');
   background-repeat: no-repeat;
 }
-.course-line li:nth-child(1){right: 45px;}
-.course-line li:nth-child(2){right: 165px;}
-.course-line li:nth-child(3){right: 285px;}
-.course-line li:nth-child(4){right: 405px;}
-.course-line li:nth-child(5){right: 525px;}
+.course-line li:nth-child(1){
+  right: 45px;
+}
+.course-line li:nth-child(2){
+  right: 165px;
+}
+.course-line li:nth-child(3){
+  right: 285px;
+}
+.course-line li:nth-child(4){
+  right: 405px;
+}
+.course-line li:nth-child(5){
+  right: 525px;
+}
+.course-plane{
+  position: absolute;
+  transition: transform 1s;
+  background-repeat: no-repeat;
+}
+.course-plane:nth-of-type(1) {
+  width: 359px;
+  height: 283px;
+  background-image: url(../img/plane1.png);
+  left: 300px;
+  top: -100px;
+}
+.course-plane:nth-of-type(2) {
+  width: 309px;
+  height: 249px;
+  background-image: url(../img/plane2.png);
+  left: -100px;
+  top: 200px;
+}
+.course-plane:nth-of-type(3) {
+  width: 230px;
+  height: 182px;
+  background-image: url(../img/plane3.png);
+  left: 300px;
+  top: 400px;
+}
 
 /*第三屏样式*/
 .works-title{
+  position: relative;
+  z-index: 10;
   margin: 50px 0 100px 50px;
 }
 .works-lists{
+  position: relative;
+  z-index: 10;
   margin-left: 50px;
 }
 .works-lists li{
@@ -350,6 +399,7 @@ img{display: block;}
   position: absolute;
   left: 900px;
   top: 170px;
+  z-index: 10;
   width: 167px;
   height: 191px;
   background: url('../img/robot.png') no-repeat;
@@ -360,6 +410,32 @@ img{display: block;}
   49%{transform: translateX(-400px);}
   50%{transform: translateX(-400px) rotateY(180deg);}
   100%{transform: rotateY(180deg);}
+}
+.works-pencil{
+  position: absolute;
+  transition: transform 1s;
+  background-repeat: no-repeat;
+}
+.works-pencil:nth-of-type(2){
+  width: 180px;
+  height: 97px;
+  background-image: url('../img/pencel1.png');
+  left: 500px;
+  top: 0;
+}
+.works-pencil:nth-of-type(3){
+  width: 268px;
+  height: 38px;
+  background-image: url('../img/pencel2.png');
+  left: 300px;
+  top: 250px;
+}
+.works-pencil:nth-of-type(4){
+  width: 441px;
+  height: 231px;
+  background-image: url('../img/pencel3.png');
+  left: 650px;
+  top: 300px;
 }
 
 /*第四屏样式*/
@@ -377,6 +453,7 @@ img{display: block;}
   height: 200px;
   border: 5px rgba(255,255,255,0.5) solid;
   border-radius: 8px;
+  transition: transform 1s;
 }
 .about-photo:nth-of-type(1){
   left: 750px;
@@ -453,11 +530,13 @@ img{display: block;}
   float: left;
   margin: 50px;
   width: 400px;
+  transition: transform 1s;
 }
 .team-content{
   float: right;
   margin: 50px;
   width: 400px;
+  transition: transform 1s;
 }
 .team-person{
   position: absolute;
