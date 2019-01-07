@@ -49,9 +49,13 @@ img{display: block;}
   float: left;
   margin-top: 15px;
 }
-.music-icon{
+.music-icon {
   float: left;
   margin-top: 50px;
+  width: 20px;
+  height: 20px;
+  background: url('../img/musicoff.gif') no-repeat;
+  cursor: pointer;
 }
 .nav{
   float: right;

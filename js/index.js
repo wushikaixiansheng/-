@@ -7,7 +7,9 @@ window.addEventListener('DOMContentLoaded',function(){
   var headerDownNodes = document.querySelectorAll('.down')
   var contentUlNode = document.querySelector('.content-main')
   var contentNode = document.querySelector('.content')
-  var navBarNodes = document.querySelectorAll('.nav-bar li');
+  var navBarNodes = document.querySelectorAll('.nav-bar li')
+  var musicNode = document.querySelector('.music')
+  var musicIconNode = document.querySelector('.music-icon')
 
   var contentHeight = contentNode.offsetHeight
   var nowIndex = 0
@@ -294,6 +296,19 @@ window.addEventListener('DOMContentLoaded',function(){
     navBarNodes[i].onclick = function () {
       nowIndex = this.index
       move(nowIndex)
+    }
+  }
+
+  // 音乐播放
+  musicIconNode.onclick = function () {
+    if (musicNode.paused) {
+      // 进入判断则证明当前音乐是暂停状态，然后设置点击播放
+      musicNode.play()
+      this.style.backgroundImage = 'url("./img/musicon.gif")'
+    } else {
+      // 否则点击暂停
+      musicNode.pause()
+      this.style.backgroundImage = 'url("./img/musicoff.gif")'
     }
   }
 
