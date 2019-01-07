@@ -43,7 +43,7 @@ img{display: block;}
   width: 1100px;
   height: 80px;
   margin: 0 auto;
-  background: #eee;
+  /*background: #eee;*/
 }
 .logo{
   float: left;
@@ -382,12 +382,19 @@ img{display: block;}
   left: 600px;
   top: 290px;
 }
-.about-photo ul{
+.about-photo{
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: 260px;
+  height: 200px;
+  background-repeat: no-repeat;
+}
+.about-photo:nth-of-type(1){
+  background-image: url('../img/about2.jpg');
+}
+.about-photo:nth-of-type(2){
+  background-image: url('../img/about2.jpg');
 }
 .about-photo li{
   float: left;
@@ -406,33 +413,76 @@ img{display: block;}
 .about-photo:nth-of-type(2) div{
   background-image: url('../img/about3.jpg');
 }
-.about-photo li:nth-child(2) div{
+.about-photo .about-photo-second{
   background-position: -130px 0;
 }
-.about-photo li:nth-child(3) div{
+.about-photo .about-photo-third{
   background-position: 0 -100px;
 }
-.about-photo li:nth-child(4) div{
+.about-photo .about-photo-fourth{
   background-position: -130px -100px;
 }
 /*下左右上*/
-.about-photo:hover li:nth-child(1) div{
+.about-photo:hover .about-photo-first{
   transform: translateY(100px);
 }
-.about-photo:hover li:nth-child(2) div{
+.about-photo:hover .about-photo-second{
   transform: translateX(-130px);
 }
-.about-photo:hover li:nth-child(3) div{
+.about-photo:hover .about-photo-third{
   transform: translateX(130px);
 }
-.about-photo:hover li:nth-child(4) div{
+.about-photo:hover .about-photo-fourth{
   transform: translateY(-100px);
 }
 .about-line{
   position: absolute;
-  right: 186px;
-  top: -12px;
+  right: 188px;
+  top: -13px;
   width: 357px;
   height: 998px;
   background: url('../img/greenLine.png') no-repeat;
+}
+
+/*第五屏样式*/
+.team-title{
+  float: left;
+  margin: 50px;
+  width: 400px;
+}
+.team-content{
+  float: right;
+  margin: 50px;
+  width: 400px;
+}
+.team-person{
+  position: absolute;
+  top: 230px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 944px;
+  height: 448px;
+}
+.team-person li{
+  float: left;
+  width: 236px;
+  height: 100%;
+  background: url('../img/team.png') no-repeat;
+}
+.team-person li:nth-child(1){
+  background-position: 3px 0px;
+}
+.team-person li:nth-child(2){
+  background-position: -230px 0px;
+}
+.team-person li:nth-child(3){
+  background-position: -483px 0px;
+}
+.team-person li:nth-child(4){
+  background-position: -710px 0px;
+}
+.canvas{
+  position: absolute;
+  top: 0;
 }
