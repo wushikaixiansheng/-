@@ -486,3 +486,22 @@ img{display: block;}
   position: absolute;
   top: 0;
 }
+
+/*侧边导航*/
+.nav-bar {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.nav-bar li {
+  width: 15px;
+  height: 15px;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.nav-bar .active {
+  background: white;
+}

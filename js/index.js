@@ -7,9 +7,11 @@ window.addEventListener('DOMContentLoaded',function(){
   var headerDownNodes = document.querySelectorAll('.down')
   var contentUlNode = document.querySelector('.content-main')
   var contentNode = document.querySelector('.content')
+  var navBarNodes = document.querySelectorAll('.nav-bar li');
 
   var contentHeight = contentNode.offsetHeight
   var nowIndex = 0
+  var lastIndex = 0
   var wheelTimer = null
 
   // 处理头部区域
@@ -33,16 +35,24 @@ window.addEventListener('DOMContentLoaded',function(){
 
   // 公共 move 函数
   function move(nowIndex) {
+    // for (var j = 0; j < headerDownNodes.length; j++) {
+    //   headerDownNodes[j].style.width = ''
+    //   navBarNodes[lastIndex].className = ''
+    // }
     // 默认所有 width 为 0
-    for (var j = 0; j < headerDownNodes.length; j++) {
-      headerDownNodes[j].style.width = ''
-    }
+    headerDownNodes[lastIndex].style.width = ''
+    // 侧边导航
+    navBarNodes[lastIndex].className = ''
     // 设置当前 width 为 100%
     headerDownNodes[nowIndex].style.width = '100%'
     // 设置小箭头在当前点击的 li 下面
     arrowNode.style.left = headerLisNodes[nowIndex].getBoundingClientRect().left + headerLisNodes[nowIndex].offsetWidth / 2 - arrowNode.offsetWidth / 2 + 'px'
     // 让内容区滚动
     contentUlNode.style.top = - nowIndex * contentHeight + 'px'
+    // 侧边导航
+    navBarNodes[nowIndex].className = 'active'
+    // 同步更新
+    lastIndex = nowIndex
   }
 
   // move(4)
@@ -276,6 +286,15 @@ window.addEventListener('DOMContentLoaded',function(){
       }
     }
 
+  }
+
+  // 侧边导航
+  for (var i = 0; i < navBarNodes.length; i++) {
+    navBarNodes[i].index = i
+    navBarNodes[i].onclick = function () {
+      nowIndex = this.index
+      move(nowIndex)
+    }
   }
 
 })
