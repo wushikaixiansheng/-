@@ -45,6 +45,8 @@ window.addEventListener('DOMContentLoaded',function(){
     contentUlNode.style.top = - nowIndex * contentHeight + 'px'
   }
 
+  move(3)
+
   // 处理内容区域
   contentHandle()
   function contentHandle() {
