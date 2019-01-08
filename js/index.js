@@ -26,11 +26,11 @@ window.addEventListener('DOMContentLoaded',function(){
   var animationArr = [
     {
       anOut: function () {
-        // homeNode.style.transform = 'translateY(-200px)'
+        homeNode.style.transform = 'translateY(-200px)'
         homeNode.style.opacity = 0
       },
       anIn: function () {
-        // homeNode.style.transform = 'translateY(0)'
+        homeNode.style.transform = 'translateY(0)'
         homeNode.style.opacity = 1
       }
     },
@@ -84,8 +84,46 @@ window.addEventListener('DOMContentLoaded',function(){
 
   // 默认除第一屏之外，其他所有屏都做出场动画
   for (var i = 0; i < animationArr.length; i++) {
-    if (i === 0) continue
+    // if (i === 0) continue
     animationArr[i].anOut()
+  }
+
+  // 开机动画
+  bootAnimation()
+  function bootAnimation(){
+
+    var bootAnimationLineNode = document.querySelector('.boot-animation .line')
+    var bootAnimationTopNode = document.querySelector('.boot-animation .top')
+    var bootAnimationBottomNode = document.querySelector('.boot-animation .bottom')
+    var bootAnimationNode = document.querySelector('.boot-animation')
+
+    // 等待页面所有图片加载完成
+    var imageArr = ['bg1.jpg','bg2.jpg','bg3.jpg','bg4.jpg','bg5.jpg','about1.jpg','about2.jpg','about3.jpg','about4.jpg','worksimg1.jpg','worksimg2.jpg','worksimg3.jpg','worksimg4.jpg','team.png','greenLine.png']
+    // 加载完成的数量
+    var num = 0
+    var length =imageArr.length
+    for (var i = 0; i < length; i++) {
+      var item = imageArr[i]
+      var image = new Image()
+      image.src = './img/' + item
+      image.onload = function(){
+        num++
+        bootAnimationLineNode.style.width = num / length * 100 + '%'
+        if(num === length){
+          // 进入判断则证明所有图片已加载完成
+          bootAnimationTopNode.style.height = 0
+          bootAnimationBottomNode.style.height = 0
+          bootAnimationLineNode.style.display = 'none'
+          bootAnimationTopNode.addEventListener('transitionend',function(){
+            // 移除开机动画遮罩层
+            bootAnimationNode.remove()
+            // 让第一屏做入场动画
+            animationArr[0].anIn()
+          })
+        }
+      }
+    }
+
   }
 
   // 处理头部区域
@@ -134,7 +172,7 @@ window.addEventListener('DOMContentLoaded',function(){
 
   // move(4)
 
-  // 处理内容区域
+  // 内容区域
   contentHandle()
   function contentHandle() {
 
@@ -293,7 +331,7 @@ window.addEventListener('DOMContentLoaded',function(){
           bubble(canvas)
           teamUlNode.appendChild(canvas)
         }
-        // 不管添不添加 canvas，都需要改变 left 值
+        // 不管添不添加 canvas，都需要改变 left 的值
         canvas.style.left = this.index * width + 'px'
       }
     }
